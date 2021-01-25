@@ -1,0 +1,22 @@
+From: =?utf-8?b?IlNaIExpbiAo5p6X5LiK5pm6KSI=?= <szlin@debian.org>
+Date: Tue, 26 Jan 2021 14:55:21 +0800
+Subject: Fix overflow error in a test case on i386 platform
+
+Signed-off-by: Davide Brunato <brunato@sissa.it>
+---
+ elementpath/xpath2/xpath2_functions.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/elementpath/xpath2/xpath2_functions.py b/elementpath/xpath2/xpath2_functions.py
+index 3889a96..1028b81 100644
+--- a/elementpath/xpath2/xpath2_functions.py
++++ b/elementpath/xpath2/xpath2_functions.py
+@@ -279,7 +279,7 @@ def evaluate(self, context=None):
+         return float(round(Decimal.from_float(item), precision))
+     except TypeError as err:
+         raise self.error('XPTY0004', err)
+-    except DecimalException:
++    except (DecimalException, OverflowError):
+         if isinstance(item, Decimal):
+             return Decimal.from_float(round(float(item), precision))
+         return round(item, precision)
