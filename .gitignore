@@ -1,0 +1,17 @@
+*.pyc
+*.pyo
+*~
+*.so
+*.swp
+*.egg-info
+.idea/
+.project
+.ipynb_checkpoints/
+.tox/
+.coverage*
+!.coveragerc
+doc/_*
+__pycache__/
+dist/
+build/
+development/
